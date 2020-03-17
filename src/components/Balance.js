@@ -3,15 +3,11 @@ import {GlobalContext} from '../context/GlobalState';
 
 export const Balance = () => {
     const { transactions } = useContext(GlobalContext);
-    const [balance,setBalance] = useState(0);
-    useEffect(() => {
-        let result = 0; 
-        for(let i = 0; i < transactions.length;i++) {
-            result += transactions[i].amount;
-        }
-        setBalance(balance + result);
-    },[])
-
+    let balance = 0;
+    let result = 0; 
+    for(let i = 0; i < transactions.length;i++) {
+        balance += parseInt(transactions[i].amount);
+    };
 
 
     return (

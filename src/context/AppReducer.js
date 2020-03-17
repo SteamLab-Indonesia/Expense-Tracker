@@ -8,6 +8,7 @@ export default (state,action) => {
             };
         case 'ADD_TRANSACTION':
             console.log("Transaction Added!");
+            console.log(state.transactions)
             return {
                 ...state,
                 transactions: [action.payload,...state.transactions]
