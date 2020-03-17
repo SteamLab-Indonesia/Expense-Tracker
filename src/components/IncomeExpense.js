@@ -3,22 +3,16 @@ import {GlobalContext} from '../context/GlobalState';
 
 export const IncomeExpense = () => {
     const { transactions } = useContext(GlobalContext);
-    const [income,setIncome] = useState(0);
-    const [expense,setExpense] = useState(0);
-    useEffect(() => {
-        let result = 0; 
-        let income = 0;
-        let expense = 0
-        for(let i = 0; i < transactions.length;i++) {
-            if(transactions[i].amount > 0){
-                income += transactions[i].amount;
-            }else if(transactions[i].amount < 0 ){
-                expense += transactions[i].amount;
-            }
-            setIncome(income);
-            setExpense(Math.abs(expense));
+    let income = 0;
+    let expense = 0;
+    for(let i = 0; i < transactions.length;i++) {
+        if(transactions[i].amount > 0){
+            income += parseInt(transactions[i].amount);
+        }else if(transactions[i].amount < 0 ){
+            expense += parseInt(transactions[i].amount);
         }
-    },[])
+    }
+    expense = Math.abs(expense);
 
     return (
         <div className="inc-exp-container">
