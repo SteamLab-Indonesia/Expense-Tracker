@@ -1,6 +1,7 @@
 import React from 'react';
 import {Switch,Route} from 'react-router-dom';
 import SplashScreen from './SplashScreen';
+import SignUp from './SignUp';
 import {ExpenseTracker} from '../ExpenseTracker';
 
 export const Navigation = () => {
@@ -9,6 +10,7 @@ export const Navigation = () => {
                 <Switch>
                     <Route exact path="/" component={SplashScreen} />
                     <Route path='/expensetracker' component={ExpenseTracker}/>
+                    <Route path='/signup' component={SignUp}/>
                 </Switch>
         );
 }   

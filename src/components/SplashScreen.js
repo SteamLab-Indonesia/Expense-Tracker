@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-// import CircularProgress from '@material-ui/core/CircularProgress';
 import {CircularProgress} from '@material-ui/core';
 import Logo from '../steamlogo.png';
 
@@ -45,7 +44,7 @@ class SplashScreen extends Component {
     componentWillMount() {
         setTimeout(() => {
             // this.props.history.push('/signup');
-            this.props.history.push('expensetracker');
+            this.props.history.push('signup');
         },4500)
         
     }

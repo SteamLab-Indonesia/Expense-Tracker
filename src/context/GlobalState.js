@@ -1,5 +1,8 @@
-import React, {createContext, useReducer} from 'react';
+import React, {createContext, useReducer,useEffect} from 'react';
+import {getAllExpenses} from '../libs/Users';
 import AppReducer from './AppReducer';
+
+// const initialState = getAllExpenses();
 
 const initialState = {
     transactions: [
@@ -13,8 +16,16 @@ const initialState = {
 export const GlobalContext = createContext(initialState);
 
 export const GlobalProvider = ({children}) => {
-    const [state,dispatch] = useReducer(AppReducer, initialState);
 
+    // useEffect(() => {
+    //     getAllExpenses((expenses_callback) => {
+    //         initialState = expenses_callback;
+    //         console.log(initialState);
+    //     })
+    // })
+
+    const [state,dispatch] = useReducer(AppReducer,  initialState);
+    console.log(initialState);
     let currentId = initialState['transactions'].length + 1;
 
     function deleteTransaction(id) {

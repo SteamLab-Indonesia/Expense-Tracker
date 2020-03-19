@@ -1,5 +1,4 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from '../libs/firebase';
 
 export default (state,action) => {
     switch(action.type){
@@ -11,12 +10,12 @@ export default (state,action) => {
             };
         case 'ADD_TRANSACTION':
             const db = firebase.firestore();
-            console.log("Transaction Added!");
-            console.log(state.transactions)
-            db.collection("users").add({
-                first: 'Xavier',
-                last: 'Tan',
-                born: 2002
+            console.log(action.payload);
+            const data = action.payload
+            db.collection("expenses").add({
+                id: data.id,
+                text: data.text,
+                amount: data.amount
             }).then((docRef) => {
                 console.log("Document written with ID: ", docRef.id)
             })
