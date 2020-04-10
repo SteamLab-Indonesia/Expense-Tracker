@@ -1,32 +1,29 @@
-import React, {createContext, useReducer,useEffect} from 'react';
-import {getAllExpenses} from '../libs/Users';
+import React, {Component, createContext, useReducer,useEffect} from 'react';
 import AppReducer from './AppReducer';
+import {getAllExpenses} from '../libs/Users';
 
 // const initialState = getAllExpenses();
 
 const initialState = {
     transactions: [
-        {id:1, text:'Flower', amount:-20},
-        {id:2, text:'Book', amount:-20},
-        {id:3, text:'Salary', amount:150},
-        {id:4, text:'Food', amount:-50},
+
     ]
 };
 
 export const GlobalContext = createContext(initialState);
 
 export const GlobalProvider = ({children}) => {
+    const [state,dispatch] = useReducer(AppReducer, initialState);
 
-    // useEffect(() => {
-    //     getAllExpenses((expenses_callback) => {
-    //         initialState = expenses_callback;
-    //         console.log(initialState);
-    //     })
-    // })
 
-    const [state,dispatch] = useReducer(AppReducer,  initialState);
-    console.log(initialState);
-    let currentId = initialState['transactions'].length + 1;
+    useEffect(() => {
+        getAllExpenses().then((data) => {
+            dispatch({
+                type: 'INITIAL_TRANSACTION',
+                payload: data.transactions
+            })
+        })
+    },[])
 
     function deleteTransaction(id) {
         dispatch({
@@ -48,4 +45,4 @@ export const GlobalProvider = ({children}) => {
         deleteTransaction,
         addTransaction,
     }}>{children}</GlobalContext.Provider>)
-}
+}     

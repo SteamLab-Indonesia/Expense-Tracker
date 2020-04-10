@@ -5,14 +5,18 @@ export const IncomeExpense = () => {
     const { transactions } = useContext(GlobalContext);
     let income = 0;
     let expense = 0;
-    for(let i = 0; i < transactions.length;i++) {
-        if(transactions[i].amount > 0){
-            income += parseInt(transactions[i].amount);
-        }else if(transactions[i].amount < 0 ){
-            expense += parseInt(transactions[i].amount);
+    if (transactions)
+    {
+        for(let i = 0; i < transactions.length;i++) {
+            if(transactions[i].amount > 0){
+                income += parseInt(transactions[i].amount);
+            }else if(transactions[i].amount < 0 ){
+                expense += parseInt(transactions[i].amount);
+            }
         }
+        expense = Math.abs(expense);
     }
-    expense = Math.abs(expense);
+
 
     return (
         <div className="inc-exp-container">

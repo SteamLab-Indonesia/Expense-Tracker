@@ -2,6 +2,11 @@ import firebase from '../libs/firebase';
 
 export default (state,action) => {
     switch(action.type){
+        case 'INITIAL_TRANSACTION':
+            return {
+                ...state,
+                transactions: action.payload
+            }
         case 'DELETE_TRANSACTION':
             console.log("Delete Transaction!");
             return {

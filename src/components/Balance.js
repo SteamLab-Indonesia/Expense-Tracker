@@ -5,9 +5,12 @@ export const Balance = () => {
     const { transactions } = useContext(GlobalContext);
     let balance = 0;
     let result = 0; 
-    for(let i = 0; i < transactions.length;i++) {
-        balance += parseInt(transactions[i].amount);
-    };
+    if (transactions)
+    {
+        for(let i = 0; i < transactions.length;i++) {
+            balance += parseInt(transactions[i].amount);
+        }
+    }
 
 
     return (
